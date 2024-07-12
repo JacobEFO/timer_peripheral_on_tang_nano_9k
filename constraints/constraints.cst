@@ -1,0 +1,4 @@
+IO_LOC "clk_i" 52;
+IO_PORT "clk_i" PULL_MODE=UP;
+IO_LOC "rst_ni" 4;
+IO_LOC "out_o" 10;
