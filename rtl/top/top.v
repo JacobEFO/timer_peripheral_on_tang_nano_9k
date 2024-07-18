@@ -10,7 +10,7 @@
  */
 
 
-`include "rtl/timer/timer.v"
+//`include "rtl/timer/timer.v"
 
 module top
 (

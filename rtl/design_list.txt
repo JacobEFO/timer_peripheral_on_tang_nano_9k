@@ -1,4 +1,2 @@
 rtl/timer/timer.v
 rtl/top/top.v
-
-bench/main_tb.v

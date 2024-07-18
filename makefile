@@ -21,35 +21,11 @@ output_synth := synth-$(project).json
 output_pnr := pnr-$(project).json
 output_bitstream := bitstream-$(project).fs
 
-sim:
-	iverilog -o $(sim_dir)/main_tb -c file_list.txt -D 'DUMP_FILE_NAME="$(sim_dir)/main_tb.vcd"'
-	vvp $(sim_dir)/main_tb
-
-show:
-	gtkwave $(sim_dir)/main_tb.vcd
-
-
-# Makes everything related to the FPGA but not the programming
-fpga: synth pnr bitstream
-
-synth: 
-	yosys $(top_file) -p'synth_gowin -top $(top_module) -json $(fpga_dir)/$(output_synth)'
-	# yosys $(top_file) -p'synth_gowin -top $(top_module) -json $(fpga_dir)/$(output_synth)'
-
-pnr:
-	nextpnr-himbaechel  --json $(fpga_dir)/$(output_synth) \
-						--write $(fpga_dir)/$(output_pnr) \
-						--device '$(device)' \
-						--vopt cst=$(constraints_file) \
-						--vopt family=$(device_family)
-
-bitstream:
-	gowin_pack -d $(device_family) -o $(fpga_dir)/$(output_bitstream) $(fpga_dir)/$(output_pnr)
-
-program:
-	openFPGALoader -b $(board) $(fpga_dir)/$(output_bitstream)
-
-clean:
-	rm -f $(fpga_dir)/*
-	rm -f $(sim_dir)/*
-	rm -f $(build_dir)/*
+# cocotb stuff
+SIM ?= icarus
+WAVES = 1
+TOPLEVEL_LANG ?= verilog
+VERILOG_SOURCES += $(PWD)/rtl/timer/timer.v
+TOPLEVEL = timer
+MODULE = main_coco_tb
+include $(shell cocotb-config --makefiles)/Makefile.sim

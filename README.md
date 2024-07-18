@@ -9,6 +9,17 @@ This proves as a good learning ground for working with the Tang Nano 9k as well 
 - Working installation of [oss-cad-suite](https://github.com/YosysHQ/oss-cad-suite-build)
 
 ## Simulate testbench
+To simulate the only present testbench you can use the following commands:
+```
+make sim
+make show
+```
+
+If you need to clean up, please use:
+```
+make clean
+```
+
 
 ## Build the FPGA
 To use this, simply plug-in your FPGA development and run the following commands via the `makefile`:
@@ -19,9 +30,9 @@ make bitstream
 make program
 ```
 
-Do you hate typing? You can also use the `make all`:
+Do you hate typing? You can also use the `make fpga`:
 ```
-make all
+make fpga
 make program
 ```
 
@@ -30,3 +41,7 @@ If you want to start over, you can `clean`:
 make clean
 ```
 
+# TODO
+[ ] Move main_coco_tb into bench directory
+[ ] Make common FPGA/cocotb makefile
+[X] Figure out the FPGA clocking scheme; what is the PLL clock that we are using?

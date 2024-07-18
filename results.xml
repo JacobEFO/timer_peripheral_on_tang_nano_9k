@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1721240691" />
+    <testcase name="my_first_test" classname="main_coco_tb" file="/Users/jefo/MEGA/Electronics/FPGA/Tang_Nano/timer/main_coco_tb.py" lineno="21" time="0.04330611228942871" sim_time_ns="28999.972" ratio_time="669650.7829237554">
+      <failure message="Test failed with COCOTB_RANDOM_SEED=1721240691" />
+    </testcase>
+  </testsuite>
+</testsuites>
